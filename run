@@ -1,0 +1,1 @@
+java -jar -Djava.library.path=/usr/local/Cellar/opencv/4.3.0_5/share/java/opencv4/ ./build/libs/video-playback-all-1.0-SNAPSHOT.jar
