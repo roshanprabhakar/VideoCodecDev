@@ -41,11 +41,6 @@ public class VideoFeed extends Feed {
                 channel.send(packet);
                 packet = new ArrayList<>();
             }
-
-            try {
-                this.sleep(0);
-            } catch (InterruptedException ignored) {
-            }
         }
     }
 
