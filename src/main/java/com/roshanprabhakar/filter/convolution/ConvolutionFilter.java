@@ -1,7 +1,5 @@
 package com.roshanprabhakar.filter;
 
-import java.awt.*;
-
 public abstract class ConvolutionFilter extends Filter {
 
     protected double[][] kernel;
@@ -43,6 +41,4 @@ public abstract class ConvolutionFilter extends Filter {
 
         return out;
     }
-
-
 }
