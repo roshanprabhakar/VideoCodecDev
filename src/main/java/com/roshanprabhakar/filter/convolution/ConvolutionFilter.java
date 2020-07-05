@@ -1,6 +1,6 @@
-package com.roshanprabhakar.filter;
+package com.roshanprabhakar.filter.convolution;
 
-import java.awt.*;
+import com.roshanprabhakar.filter.Filter;
 
 public abstract class ConvolutionFilter extends Filter {
 
@@ -43,6 +43,4 @@ public abstract class ConvolutionFilter extends Filter {
 
         return out;
     }
-
-
 }

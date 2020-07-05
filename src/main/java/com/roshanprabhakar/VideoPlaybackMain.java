@@ -1,18 +1,21 @@
 package com.roshanprabhakar;
 
 
-import com.roshanprabhakar.channel.Channel;
 import com.roshanprabhakar.feed.Feed;
+import com.roshanprabhakar.feed.FileFeed;
 import com.roshanprabhakar.feed.VideoFeed;
-import com.roshanprabhakar.filter.EdgeDetector;
+import com.roshanprabhakar.feed.WebcamFeed;
+import com.roshanprabhakar.filter.BlankFilter;
+import com.roshanprabhakar.filter.FilterChain;
+import com.roshanprabhakar.filter.MirrorFilter;
+import com.roshanprabhakar.filter.convolution.EdgeDetector;
 import com.roshanprabhakar.filter.Filter;
+import com.roshanprabhakar.processor.Processor;
 import com.roshanprabhakar.renderer.Renderer;
 
 import org.opencv.core.Core;
-import org.opencv.core.Mat;
-import org.opencv.videoio.VideoCapture;
-import org.opencv.videoio.Videoio;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 public class VideoPlaybackMain {
@@ -26,9 +29,11 @@ public class VideoPlaybackMain {
 //    private static final int packets = 10;
 //    private static final int channelBuffer = packets;
 
-    private static final String path = "Untitled.mov";
+    public static ArrayList<Processor> processors = new ArrayList<>();
 
-    private static final int framesPerPacket = 10;
+    private static final String testVideo = "Untitled.mov";
+
+    private static Dimension FRAME_DIMENSION;
 
     static {
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
@@ -36,22 +41,35 @@ public class VideoPlaybackMain {
 
     public static void main(String[] args) {
 
-        EdgeDetector filter = new EdgeDetector();
+//        Feed feed = new WebcamFeed();
+        Feed feed = new FileFeed(testVideo);
+        FRAME_DIMENSION = feed.getFrameDimension();
 
-        VideoCapture capture = new VideoCapture();
-        capture.open(path);
+        Renderer renderer = new Renderer(FRAME_DIMENSION.width, FRAME_DIMENSION.height);
 
-        Mat firstFrame = new Mat();
-        capture.read(firstFrame);
+//        Filter filter = new EdgeDetector(EdgeDetector.HORIZONTAL_KERNEL);
+        Filter filter = new FilterChain(new Filter[]{new EdgeDetector(EdgeDetector.HORIZONTAL_KERNEL), new MirrorFilter()});
+//        Filter filter = new MirrorFilter();
 
-        Renderer finalVideoRenderer = new Renderer(firstFrame.width(), firstFrame.height(), capture.get(Videoio.CAP_PROP_FPS) + 1000);
-        Channel channel = new Channel(filter, finalVideoRenderer, (int) (capture.get(Videoio.CAP_PROP_FRAME_COUNT) / framesPerPacket));
-        Feed videoFeed = new VideoFeed(capture, path, channel, framesPerPacket);
+        createProcesses(feed, renderer, filter, 2);
 
-        finalVideoRenderer.setVisible(true);
+        feed.start();
 
-        videoFeed.start();
-        channel.start();
+        renderer.setVisible(true);
+        renderer.start();
 
+        runProcesses();
+    }
+
+    public static void createProcesses(Feed feed, Renderer renderer, Filter filter, int numProcessors) {
+        for (int i = 0; i < numProcessors; i++) {
+            processors.add(new Processor(feed, renderer, filter));
+        }
+    }
+
+    public static void runProcesses() {
+        for (Processor processor : processors) {
+            processor.start();
+        }
     }
 }

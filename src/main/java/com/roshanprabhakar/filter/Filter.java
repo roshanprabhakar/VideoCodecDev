@@ -5,14 +5,7 @@ import java.util.ArrayList;
 
 public abstract class Filter {
 
-    public ArrayList<int[][]> filtered(ArrayList<int[][]> frames) {
-        for (int i = 0; i < frames.size(); i++) {
-            frames.set(i, filtered(frames.get(i)));
-        }
-        return frames;
-    }
-
-    protected abstract int[][] filtered(int[][] frame);
+    public abstract int[][] filter(int[][] frame);
 
     protected void convertToGreyByte(int[][] frame) {
 
