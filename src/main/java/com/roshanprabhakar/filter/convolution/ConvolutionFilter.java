@@ -1,4 +1,6 @@
-package com.roshanprabhakar.filter;
+package com.roshanprabhakar.filter.convolution;
+
+import com.roshanprabhakar.filter.Filter;
 
 public abstract class ConvolutionFilter extends Filter {
 

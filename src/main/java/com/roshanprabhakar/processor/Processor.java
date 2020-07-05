@@ -1,51 +1,27 @@
-package com.roshanprabhakar.channel;
+package com.roshanprabhakar.processor;
 
-import com.roshanprabhakar.renderer.Renderer;
+import com.roshanprabhakar.feed.Feed;
 import com.roshanprabhakar.filter.Filter;
+import com.roshanprabhakar.renderer.Renderer;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.BlockingQueue;
-
-public class Channel extends Thread {
+public class Processor extends Thread {
 
     private Filter filter;
-    private Renderer videoRenderer;
 
-    private BlockingQueue<ArrayList<int[][]>> queue;
+    private Feed feed;
+    private Renderer renderer;
 
-    public Channel(Filter filter, Renderer videoRenderer, int bufferCapacityInPackets) {
-
+    public Processor(Feed feed, Renderer renderer, Filter filter) {
+        this.feed = feed;
+        this.renderer = renderer;
         this.filter = filter;
-        this.videoRenderer = videoRenderer;
-
-        this.queue = new ArrayBlockingQueue<>(bufferCapacityInPackets);
-    }
-
-    public void send(ArrayList<int[][]> packet) {
-        System.out.println("------------------------");
-        System.out.println("size before: " + queue.size());
-
-         ArrayList<int[][]> filtered = filter.filtered(packet);
-//        ArrayList<int[][]> filtered = packet;
-        queue.add(filtered);
-
-        System.out.println("size after: " + queue.size());
-        System.out.println("------------------------");
     }
 
     public void run() {
         while (true) {
-            try {
-                videoRenderer.render(queue.take());
-            } catch (InterruptedException ignored) {
-            }
+            int[][] frame = feed.take();
+            frame = filter.filter(frame);
+            renderer.add(frame);
         }
-    }
-
-    public int[] transmit(int[] encoded) {
-        try {Thread.sleep(0);} catch (InterruptedException ignored) {}
-        return encoded;
     }
 }

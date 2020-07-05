@@ -1,6 +1,8 @@
-package com.roshanprabhakar.filter;
+package com.roshanprabhakar.filter.convolution;
 
-import java.awt.*;
+import com.roshanprabhakar.filter.convolution.ConvolutionFilter;
+
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class EdgeDetector extends ConvolutionFilter {
@@ -32,13 +34,12 @@ public class EdgeDetector extends ConvolutionFilter {
     }
 
     @Override
-    public int[][] filtered(int[][] frame) {
+    public int[][] filter(int[][] frame) {
 
         convertToGreyByte(frame);
         frame = convolve(frame, 255);
         greyByteToInteger(frame);
 
         return frame;
-
     }
 }
