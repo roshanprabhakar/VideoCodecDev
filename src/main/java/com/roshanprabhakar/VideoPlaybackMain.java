@@ -41,16 +41,16 @@ public class VideoPlaybackMain {
 
     public static void main(String[] args) {
 
-        Feed feed = new WebcamFeed();
-//        Feed feed = new FileFeed(testVideo);
+//        Feed feed = new WebcamFeed();
+        Feed feed = new FileFeed(testVideo);
         FRAME_DIMENSION = feed.getFrameDimension();
 
         Renderer renderer = new Renderer(FRAME_DIMENSION.width, FRAME_DIMENSION.height);
 
 //        Filter filter = new EdgeDetector(EdgeDetector.HORIZONTAL_KERNEL);
-//        Filter filter = new FilterChain(new Filter[]{new EdgeDetector(EdgeDetector.HORIZONTAL_KERNEL), new MirrorFilter()});
+        Filter filter = new FilterChain(new Filter[]{new EdgeDetector(EdgeDetector.HORIZONTAL_KERNEL), new MirrorFilter()});
 //        Filter filter = new MirrorFilter();
-        Filter filter = new BlankFilter();
+//        Filter filter = new BlankFilter();
 
         createProcesses(feed, renderer, filter, 2);
 

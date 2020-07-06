@@ -38,39 +38,39 @@ public class Renderer extends Thread {
         framesAdded++;
     }
 
-//    public void run() {
-//
-//        while (true) {
-//
-//            if (framesAdded < 1) continue; //buffer
-//
-//            try {
-//                render(renderQueue.take());
-//            } catch (InterruptedException ignored) {
-//            }
-//        }
-//    }
-
     public void run() {
-        try {
-            int[][] initFrame = renderQueue.take();
-            render(initFrame);
 
-            while (true) {
+        while (true) {
 
-                int[][] nextFrame = renderQueue.take();
-                int[][] delta = getDelta(initFrame, nextFrame, 10000000);
+            if (framesAdded < 1) continue; //buffer
 
-                if (isBlank(delta)) {
-                    render(initFrame);
-                } else {
-                    render(delta);
-                }
-
-                initFrame = delta;
+            try {
+                render(renderQueue.take());
+            } catch (InterruptedException ignored) {
             }
-        } catch (InterruptedException ignored) {}
+        }
     }
+//
+//    public void run() {
+//        try {
+//            int[][] initFrame = renderQueue.take();
+//            render(initFrame);
+//
+//            while (true) {
+//
+//                int[][] nextFrame = renderQueue.take();
+//                int[][] delta = getDelta(initFrame, nextFrame, 1000000);
+//
+//                if (isBlank(delta)) {
+//                    render(initFrame);
+//                } else {
+//                    render(delta);
+//                }
+//
+//                initFrame = delta;
+//            }
+//        } catch (InterruptedException ignored) {}
+//    }
 
     public int[][] getDelta(int[][] initFrame, int[][] nextFrame, int threshold) {
         int[][] out = new int[initFrame.length][initFrame[0].length];
