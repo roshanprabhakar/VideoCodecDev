@@ -48,8 +48,9 @@ public class VideoPlaybackMain {
         Renderer renderer = new Renderer(FRAME_DIMENSION.width, FRAME_DIMENSION.height);
 
 //        Filter filter = new EdgeDetector(EdgeDetector.HORIZONTAL_KERNEL);
-        Filter filter = new FilterChain(new Filter[]{new EdgeDetector(EdgeDetector.HORIZONTAL_KERNEL), new MirrorFilter()});
+//        Filter filter = new FilterChain(new Filter[]{new EdgeDetector(EdgeDetector.HORIZONTAL_KERNEL), new MirrorFilter()});
 //        Filter filter = new MirrorFilter();
+        Filter filter = new BlankFilter();
 
         createProcesses(feed, renderer, filter, 2);
 

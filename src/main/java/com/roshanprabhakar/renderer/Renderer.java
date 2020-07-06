@@ -2,6 +2,7 @@ package com.roshanprabhakar.renderer;
 
 import javax.swing.*;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
@@ -37,18 +38,61 @@ public class Renderer extends Thread {
         framesAdded++;
     }
 
+//    public void run() {
+//
+//        while (true) {
+//
+//            if (framesAdded < 1) continue; //buffer
+//
+//            try {
+//                render(renderQueue.take());
+//            } catch (InterruptedException ignored) {
+//            }
+//        }
+//    }
+
     public void run() {
+        try {
+            int[][] initFrame = renderQueue.take();
+            render(initFrame);
 
-        while (true) {
+            while (true) {
 
-            if (framesAdded < 1) continue;
+                int[][] nextFrame = renderQueue.take();
+                int[][] delta = getDelta(initFrame, nextFrame, 10000000);
 
-            try {
-                render(renderQueue.take());
-            } catch (InterruptedException ignored) {
+                if (isBlank(delta)) {
+                    render(initFrame);
+                } else {
+                    render(delta);
+                }
+
+                initFrame = delta;
+            }
+        } catch (InterruptedException ignored) {}
+    }
+
+    public int[][] getDelta(int[][] initFrame, int[][] nextFrame, int threshold) {
+        int[][] out = new int[initFrame.length][initFrame[0].length];
+        for (int r = 0; r < initFrame.length; r++) {
+            for (int c = 0; c < initFrame[r].length; c++) {
+                if (Math.abs(nextFrame[r][c] - initFrame[r][c]) > threshold) {
+                    out[r][c] = nextFrame[r][c];
+                }
             }
         }
+        return out;
     }
+
+    public boolean isBlank(int[][] frame) {
+        for (int r = 0; r < frame.length; r++) {
+            for (int c = 0; c < frame[r].length; c++) {
+                if (frame[r][c] != 0) return false;
+            }
+        }
+        return true;
+    }
+
 
     private void render(int[][] frame) {
         paint(frame);
