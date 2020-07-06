@@ -3,6 +3,9 @@ package com.roshanprabhakar.filter;
 import java.awt.*;
 import java.util.ArrayList;
 
+/**
+ * A template for the development of frame filters
+ */
 public abstract class Filter {
 
     public abstract int[][] filter(int[][] frame);

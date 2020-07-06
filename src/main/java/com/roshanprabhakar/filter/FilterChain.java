@@ -1,5 +1,8 @@
 package com.roshanprabhakar.filter;
 
+/**
+ * writeen for the successive chaining of multiple filters
+ */
 public class FilterChain extends Filter {
 
     private Filter[] filters;

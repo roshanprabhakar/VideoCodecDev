@@ -10,9 +10,19 @@ import java.awt.image.WritableRaster;
 import java.util.ArrayList;
 import java.util.concurrent.ArrayBlockingQueue;
 
+/**
+ * Optimized for video streaming, includes static methods for video processing
+ */
 public abstract class VideoFeed extends Feed {
 
+    /**
+     * streams video from some abstract source
+     */
     public abstract void run();
+
+    /**
+     * returns the size characteristics of the streamed video frames
+     */
     public abstract Dimension getFrameDimension();
 
     public int[][] imageToIntArray(BufferedImage image) {
@@ -25,6 +35,9 @@ public abstract class VideoFeed extends Feed {
         return out;
     }
 
+    /**
+     * converts opencv generated frames to java readable images
+     */
     protected static BufferedImage matToBufferedImage(Mat frame) {
         int type = 0;
         if (frame.channels() == 1) {
@@ -41,6 +54,9 @@ public abstract class VideoFeed extends Feed {
         return image;
     }
 
+    /**
+     * initiates streaming from a VideoCapture device
+     */
     protected void initiate(VideoCapture video) {
         Mat frame = new Mat();
 

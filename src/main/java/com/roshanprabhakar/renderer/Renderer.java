@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
+/**
+ * reads frames from an in queue for display
+ */
 public class Renderer extends Thread {
 
     private JFrame frame;

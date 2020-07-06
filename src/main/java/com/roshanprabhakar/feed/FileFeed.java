@@ -7,6 +7,9 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.concurrent.ArrayBlockingQueue;
 
+/**
+ * Writeen for the streaming of video data from a video file
+ */
 public class FileFeed extends VideoFeed {
 
     private String filepath;
@@ -36,6 +39,9 @@ public class FileFeed extends VideoFeed {
         return new Dimension(firstFrame.width(), firstFrame.height());
     }
 
+    /**
+     * conts the number of frames in the video file specified
+     */
     protected static int countFrames(String video) {
         VideoCapture camera = new VideoCapture();
         camera.open(video);

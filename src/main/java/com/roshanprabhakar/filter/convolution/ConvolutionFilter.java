@@ -2,6 +2,9 @@ package com.roshanprabhakar.filter.convolution;
 
 import com.roshanprabhakar.filter.Filter;
 
+/**
+ * an abstraction for the development of convolution filters
+ */
 public abstract class ConvolutionFilter extends Filter {
 
     protected double[][] kernel;

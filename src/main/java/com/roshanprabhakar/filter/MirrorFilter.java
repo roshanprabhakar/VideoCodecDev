@@ -1,5 +1,8 @@
 package com.roshanprabhakar.filter;
 
+/**
+ * reflects video frames to give the impresion that (if read from webcam), the video source mirrors the feed
+ */
 public class MirrorFilter extends Filter {
 
     @Override

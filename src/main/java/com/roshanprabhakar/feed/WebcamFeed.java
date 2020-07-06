@@ -7,6 +7,9 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.concurrent.ArrayBlockingQueue;
 
+/**
+ * streams video data from the webcam
+ */
 public class WebcamFeed extends VideoFeed {
 
     public WebcamFeed() {
