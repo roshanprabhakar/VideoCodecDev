@@ -3,16 +3,13 @@ package com.roshanprabhakar;
 
 import com.roshanprabhakar.feed.Feed;
 import com.roshanprabhakar.feed.FileFeed;
-import com.roshanprabhakar.feed.VideoFeed;
 import com.roshanprabhakar.feed.WebcamFeed;
-import com.roshanprabhakar.filter.BlankFilter;
+import com.roshanprabhakar.filter.Filter;
 import com.roshanprabhakar.filter.FilterChain;
 import com.roshanprabhakar.filter.MirrorFilter;
 import com.roshanprabhakar.filter.convolution.EdgeDetector;
-import com.roshanprabhakar.filter.Filter;
 import com.roshanprabhakar.processor.Processor;
 import com.roshanprabhakar.renderer.Renderer;
-
 import org.opencv.core.Core;
 
 import java.awt.*;
@@ -41,8 +38,8 @@ public class VideoPlaybackMain {
 
     public static void main(String[] args) {
 
-//        Feed feed = new WebcamFeed();
-        Feed feed = new FileFeed(testVideo);
+        Feed feed = new WebcamFeed();
+//        Feed feed = new FileFeed(testVideo);
         FRAME_DIMENSION = feed.getFrameDimension();
 
         Renderer renderer = new Renderer(FRAME_DIMENSION.width, FRAME_DIMENSION.height);

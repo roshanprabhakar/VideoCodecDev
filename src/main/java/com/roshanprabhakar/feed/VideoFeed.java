@@ -38,7 +38,7 @@ public abstract class VideoFeed extends Feed {
     /**
      * converts opencv generated frames to java readable images
      */
-    protected static BufferedImage matToBufferedImage(Mat frame) {
+    public static BufferedImage matToBufferedImage(Mat frame) {
         int type = 0;
         if (frame.channels() == 1) {
             type = BufferedImage.TYPE_BYTE_GRAY;

@@ -1,5 +1,7 @@
 package com.roshanprabhakar.filter;
 
+import org.opencv.core.Mat;
+
 import java.awt.*;
 import java.util.ArrayList;
 
