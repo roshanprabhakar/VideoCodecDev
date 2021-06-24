@@ -12,6 +12,8 @@ import java.util.concurrent.ArrayBlockingQueue;
  */
 public class WebcamFeed extends VideoFeed {
 
+    private static final int WEBCAM = 1;
+
     public WebcamFeed() {
         feedQueue = new ArrayBlockingQueue<>(100);
     }
@@ -19,14 +21,14 @@ public class WebcamFeed extends VideoFeed {
     @Override
     public void run() {
         VideoCapture video = new VideoCapture();
-        video.open(0);
+        video.open(WEBCAM);
         initiate(video);
     }
 
     @Override
     public Dimension getFrameDimension() {
         VideoCapture capture = new VideoCapture();
-        capture.open(0);
+        capture.open(WEBCAM);
 
         Mat firstFrame = new Mat();
         capture.read(firstFrame);

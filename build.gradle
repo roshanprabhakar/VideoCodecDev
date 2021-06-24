@@ -7,8 +7,6 @@ version '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
-
-
 }
 
 jar {
@@ -18,8 +16,10 @@ jar {
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
-    compile group: 'org.openpnp', name: 'opencv', version: '4.3.0-2'
+//    testCompile group: 'junit', name: 'junit', version: '4.12'
+//    compile group: 'org.openpnp', name: 'opencv', version: '4.5.1'
+//    implementation 'org.openpnp:opencv:4.5.2-4'
+    implementation files('/usr/local/Cellar/opencv/4.5.2_4/share/java/opencv4/opencv-452.jar')
 }
 
 task uberJar(type: Jar) {
@@ -27,6 +27,6 @@ task uberJar(type: Jar) {
         attributes 'Main-Class': 'com.roshanprabhakar.VideoPlaybackMain'
     }
     baseName = project.name + '-all'
-    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it)}}
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
     with jar
 }

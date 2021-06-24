@@ -4,6 +4,7 @@ package com.roshanprabhakar;
 import com.roshanprabhakar.feed.Feed;
 import com.roshanprabhakar.feed.FileFeed;
 import com.roshanprabhakar.feed.WebcamFeed;
+import com.roshanprabhakar.filter.BlankFilter;
 import com.roshanprabhakar.filter.Filter;
 import com.roshanprabhakar.filter.FilterChain;
 import com.roshanprabhakar.filter.MirrorFilter;
@@ -33,11 +34,11 @@ public class VideoPlaybackMain {
     private static Dimension FRAME_DIMENSION;
 
     static {
-        System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+//        System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+        System.loadLibrary(org.opencv.core.Core.NATIVE_LIBRARY_NAME);
     }
 
     public static void main(String[] args) {
-
         Feed feed = new WebcamFeed();
 //        Feed feed = new FileFeed(testVideo);
         FRAME_DIMENSION = feed.getFrameDimension();
