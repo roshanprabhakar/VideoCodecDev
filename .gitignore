@@ -5,5 +5,3 @@ gradlew
 gradle/
 build
 .DS_Store
-gradlew.bat
-settings.gradle
