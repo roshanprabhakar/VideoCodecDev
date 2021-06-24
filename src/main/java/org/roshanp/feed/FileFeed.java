@@ -1,10 +1,9 @@
-package com.roshanprabhakar.feed;
+package org.roshanp.feed;
 
 import org.opencv.core.Mat;
 import org.opencv.videoio.VideoCapture;
 
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.concurrent.ArrayBlockingQueue;
 
 /**

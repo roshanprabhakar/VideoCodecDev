@@ -1,4 +1,4 @@
-package com.roshanprabhakar.feed;
+package org.roshanp.feed;
 
 import org.opencv.core.Mat;
 import org.opencv.videoio.VideoCapture;
@@ -7,8 +7,6 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
 import java.awt.image.WritableRaster;
-import java.util.ArrayList;
-import java.util.concurrent.ArrayBlockingQueue;
 
 /**
  * Optimized for video streaming, includes static methods for video processing

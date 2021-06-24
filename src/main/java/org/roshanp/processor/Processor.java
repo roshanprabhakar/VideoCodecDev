@@ -1,8 +1,8 @@
-package com.roshanprabhakar.processor;
+package org.roshanp.processor;
 
-import com.roshanprabhakar.feed.Feed;
-import com.roshanprabhakar.filter.Filter;
-import com.roshanprabhakar.renderer.Renderer;
+import org.roshanp.feed.Feed;
+import org.roshanp.filter.Filter;
+import org.roshanp.renderer.Renderer;
 
 /**
  * a thread for the removal of video frames from a feed queue, processing of said frames, and injection of processed frames into a renderer queue

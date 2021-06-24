@@ -1,22 +1,20 @@
-package com.roshanprabhakar;
+package org.roshanp;
 
 
-import com.roshanprabhakar.feed.Feed;
-import com.roshanprabhakar.feed.FileFeed;
-import com.roshanprabhakar.feed.WebcamFeed;
-import com.roshanprabhakar.filter.BlankFilter;
-import com.roshanprabhakar.filter.Filter;
-import com.roshanprabhakar.filter.FilterChain;
-import com.roshanprabhakar.filter.MirrorFilter;
-import com.roshanprabhakar.filter.convolution.EdgeDetector;
-import com.roshanprabhakar.processor.Processor;
-import com.roshanprabhakar.renderer.Renderer;
+import org.roshanp.feed.Feed;
+import org.roshanp.feed.WebcamFeed;
+import org.roshanp.filter.Filter;
+import org.roshanp.filter.FilterChain;
+import org.roshanp.filter.MirrorFilter;
+import org.roshanp.filter.convolution.EdgeDetector;
+import org.roshanp.processor.Processor;
+import org.roshanp.renderer.Renderer;
 import org.opencv.core.Core;
 
 import java.awt.*;
 import java.util.ArrayList;
 
-public class VideoPlaybackMain {
+public class Main {
 
 //    private static final int frameWidth = 600;
 //    private static final int frameHeight = 500;
@@ -29,13 +27,12 @@ public class VideoPlaybackMain {
 
     public static ArrayList<Processor> processors = new ArrayList<>();
 
-    private static final String testVideo = "Untitled.mov";
-
     private static Dimension FRAME_DIMENSION;
 
     static {
-//        System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
-        System.loadLibrary(org.opencv.core.Core.NATIVE_LIBRARY_NAME);
+        System.out.println(System.getProperty("java.library.path"));
+        System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+//        System.loadLibrary(org.opencv.core.Core.NATIVE_LIBRARY_NAME);
     }
 
     public static void main(String[] args) {

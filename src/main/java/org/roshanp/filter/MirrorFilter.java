@@ -1,4 +1,4 @@
-package com.roshanprabhakar.filter;
+package org.roshanp.filter;
 
 /**
  * reflects video frames to give the impresion that (if read from webcam), the video source mirrors the feed

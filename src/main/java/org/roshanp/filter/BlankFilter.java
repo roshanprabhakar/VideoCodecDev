@@ -1,4 +1,4 @@
-package com.roshanprabhakar.filter;
+package org.roshanp.filter;
 
 public class BlankFilter extends Filter {
 

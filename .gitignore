@@ -1,4 +1,6 @@
 .idea
 .gradle
-/Untitled.mov
-/build
+build/
+gradlew
+gradle/
+build

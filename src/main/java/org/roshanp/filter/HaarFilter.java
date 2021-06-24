@@ -1,4 +1,4 @@
-package com.roshanprabhakar.filter;
+package org.roshanp.filter;
 
 import org.opencv.core.*;
 import org.opencv.highgui.HighGui;

@@ -1,9 +1,7 @@
-package com.roshanprabhakar.renderer;
+package org.roshanp.renderer;
 
 import javax.swing.*;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 

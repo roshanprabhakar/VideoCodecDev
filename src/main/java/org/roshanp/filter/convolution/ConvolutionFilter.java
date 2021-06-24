@@ -1,6 +1,6 @@
-package com.roshanprabhakar.filter.convolution;
+package org.roshanp.filter.convolution;
 
-import com.roshanprabhakar.filter.Filter;
+import org.roshanp.filter.Filter;
 
 /**
  * an abstraction for the development of convolution filters

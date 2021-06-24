@@ -1,9 +1,6 @@
-package com.roshanprabhakar.filter;
-
-import org.opencv.core.Mat;
+package org.roshanp.filter;
 
 import java.awt.*;
-import java.util.ArrayList;
 
 /**
  * A template for the development of frame filters

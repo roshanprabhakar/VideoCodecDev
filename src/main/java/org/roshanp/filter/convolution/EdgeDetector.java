@@ -1,8 +1,5 @@
-package com.roshanprabhakar.filter.convolution;
+package org.roshanp.filter.convolution;
 
-import com.roshanprabhakar.filter.convolution.ConvolutionFilter;
-
-import java.util.Arrays;
 import java.util.HashMap;
 
 public class EdgeDetector extends ConvolutionFilter {

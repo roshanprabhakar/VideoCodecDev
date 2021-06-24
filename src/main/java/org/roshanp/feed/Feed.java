@@ -1,7 +1,6 @@
-package com.roshanprabhakar.feed;
+package org.roshanp.feed;
 
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.concurrent.BlockingQueue;
 
 /**

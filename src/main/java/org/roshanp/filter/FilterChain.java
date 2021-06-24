@@ -1,4 +1,4 @@
-package com.roshanprabhakar.filter;
+package org.roshanp.filter;
 
 /**
  * writeen for the successive chaining of multiple filters
