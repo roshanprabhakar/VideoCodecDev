@@ -43,7 +43,7 @@ public class Main {
 //        Filter filter = new MirrorFilter();
 //        Filter filter = new BlankFilter();
 
-        createProcesses(feed, renderer, filter, 10);
+        createProcesses(feed, renderer, filter, 4);
 
         feed.start();
 
