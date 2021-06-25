@@ -2,6 +2,7 @@ package org.roshanp;
 
 
 import org.roshanp.feed.Feed;
+import org.roshanp.feed.FileFeed;
 import org.roshanp.feed.WebcamFeed;
 import org.roshanp.filter.Filter;
 import org.roshanp.filter.FilterChain;
@@ -19,25 +20,20 @@ public class Main {
 //    private static final int frameWidth = 600;
 //    private static final int frameHeight = 500;
 
-//    private static final int fps = 40;
-//    private static final int fpp = 20;
-
-//    private static final int packets = 10;
-//    private static final int channelBuffer = packets;
-
-    public static ArrayList<Processor> processors = new ArrayList<>();
-
-    private static Dimension FRAME_DIMENSION;
+    public static ArrayList<Processor> processors = new ArrayList<>(); //filter processors
+    private static Dimension FRAME_DIMENSION; //render dimension
 
     static {
-        System.out.println(System.getProperty("java.library.path"));
+//        System.out.println(System.getProperty("java.library.path"));
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
 //        System.loadLibrary(org.opencv.core.Core.NATIVE_LIBRARY_NAME);
     }
 
     public static void main(String[] args) {
+
         Feed feed = new WebcamFeed();
 //        Feed feed = new FileFeed(testVideo);
+
         FRAME_DIMENSION = feed.getFrameDimension();
 
         Renderer renderer = new Renderer(FRAME_DIMENSION.width, FRAME_DIMENSION.height);

@@ -13,18 +13,12 @@ jar {
     manifest {
         attributes 'Main-Class': 'org.roshanp.Main'
     }
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it)}
+    }
 }
 
 dependencies {
 //    testCompile group: 'junit', name: 'junit', version: '4.12'
     implementation files('/usr/local/Cellar/opencv/4.5.2_4/share/java/opencv4/opencv-452.jar')
-}
-
-task uberJar(type: Jar) {
-    manifest {
-        attributes 'Main-Class': 'org.roshanp.Main'
-    }
-    baseName = project.name + '-all'
-    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
-    with jar
 }
