@@ -4,7 +4,7 @@
 Simple os-independent framework for working with video feeds. Includes support for both file and webcam stream,
 implements multi-threaded processing.
 
-![demo](./vp-demo.gif)
+<!-- ![demo](./vp-demo.gif) -->
 
 ## Project Structure
 
